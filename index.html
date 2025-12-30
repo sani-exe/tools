@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PrintFriendly Redirect</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        p {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 12px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Website → PrintFriendly</h2>
+    <p>Paste a link. Redirect happens automatically.</p>
+    <input
+        type="text"
+        id="urlInput"
+        placeholder="Paste website link here"
+        autofocus
+        oninput="handleRedirect()"
+    >
+</div>
+
+<script>
+    let redirected = false;
+
+    function handleRedirect() {
+        if (redirected) return;
+
+        const input = document.getElementById("urlInput").value.trim();
+
+        if (!input.startsWith("http")) return;
+
+        redirected = true;
+
+        const encodedURL = encodeURIComponent(input);
+        const pfURL =
+            "https://www.printfriendly.com/en-gb/print?url=" + encodedURL;
+
+        window.location.href = pfURL;
+    }
+</script>
+
+</body>
+</html>
